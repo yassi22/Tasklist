@@ -31,6 +31,15 @@ def taak_verwijderen():
 
     taken_lijst.remove(taak_positie_verwijder)
 
+def taak_afgerond():
+    taak_afronden = int(input("Voer de taaknummer in die je wilt afronden"))
+
+    for taak in taken_lijst:
+        if taak['nummer'] == taak_afronden:
+            taak['afgerond'] = True
+        else:
+            print("De genoemde taak is niet af te ronden")
+
 
 def main():
  taak_aanmaken()
