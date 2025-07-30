@@ -20,16 +20,27 @@ def taak_aanmaken():
 
 def taken_bekijken():
     for taak in taken_lijst:
-        print( "Taak nummer", taak['nummer'])
-        print("Taak naam" + " " + taak['naam'])
-        print("Taak beschrijving" + " " + taak['beschrijving'])
-        print("Taak afgerond", taak['afgerond'])
+        print( "Taak nummer:", taak['nummer'])
+        print("Taak naam:" + " " + taak['naam'])
+        print("Taak beschrijving:" + " " + taak['beschrijving'])
+        print("Taak afgerond:", taak['afgerond'])
+        print("====================================================")
 
 
 def taak_verwijderen():
-    taak_positie_verwijder = int(input("Voer de taak nummer die je wilt verwijderen"))
+        taak_nummer_verwijder = int(input("Voer het taaknummer in dat je wilt verwijderen: "))
 
-    taken_lijst.remove(taak_positie_verwijder)
+        gevonden = False
+        for taak in taken_lijst:
+            if taak["nummer"] == taak_nummer_verwijder:
+                taken_lijst.remove(taak)
+                print("Taak verwijderd.")
+                gevonden = True
+                break  # stoppen zodra de juiste taak is gevonden en verwijderd
+
+        if not gevonden:
+            print("Taak met dat nummer niet gevonden.")
+
 
 def taak_afgerond():
     taak_afronden = int(input("Voer de taaknummer in die je wilt afronden"))
@@ -40,11 +51,30 @@ def taak_afgerond():
         else:
             print("De genoemde taak is niet af te ronden")
 
-
 def main():
- taak_aanmaken()
- taken_bekijken()
- taak_verwijderen()
+
+ programma_draait = True
+
+ while programma_draait:
+     print("1 Bekijk taak")
+     print("2 Voeg taak toe")
+     print("3 Verwijder taak")
+     print("4 Vink taak af")
+     print("5 Stop")
+     print("=============================================")
+
+     gebruiker_input = int(input("Vul je invoer in"))
+
+     if gebruiker_input == 1:
+         taken_bekijken()
+     if gebruiker_input == 2:
+         taak_aanmaken()
+     if gebruiker_input == 3:
+         taak_verwijderen()
+     if gebruiker_input == 4:
+         taak_afgerond()
+     if gebruiker_input == 5:
+         programma_draait = False
 
 if __name__ == '__main__':
     main()
